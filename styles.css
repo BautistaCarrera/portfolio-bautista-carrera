@@ -1,3 +1,19 @@
+/* Variables CSS para personalización */
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #764ba2;
+    --accent-color: #357ABD;
+    --text-color: #333;
+    --text-light: #666;
+    --background-light: #f8f9fa;
+    --white: #ffffff;
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(90deg, #4A90E2, #764ba2);
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
 /* Reset y configuración base */
 * {
     margin: 0;
@@ -12,8 +28,8 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #ffffff;
+    color: var(--text-color);
+    background-color: var(--white);
 }
 
 .container {
@@ -44,7 +60,7 @@ body {
 }
 
 .nav-logo h2 {
-    color: #4A90E2;
+    color: var(--primary-color);
     font-weight: 700;
     font-size: 1.8rem;
 }
