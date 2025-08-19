@@ -228,17 +228,14 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form action="mailto:carrerabauti@gmail.com" method="GET">
                         <div class="form-group">
-                            <input type="text" placeholder="Nombre" required>
+                            <input type="text" name="subject" placeholder="Asunto" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email" required>
+                            <textarea name="body" placeholder="Mensaje" rows="5" required></textarea>
                         </div>
-                        <div class="form-group">
-                            <textarea placeholder="Mensaje" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        <button type="submit" class="btn btn-primary">Enviar Email</button>
                     </form>
                 </div>
             </div>

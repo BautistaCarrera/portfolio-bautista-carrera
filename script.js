@@ -66,37 +66,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Formulario de contacto
-const contactForm = document.querySelector('.contact-form form');
+// Formulario de contacto con Formspree
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Obtener valores del formulario
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const message = contactForm.querySelector('textarea').value;
+        const formData = new FormData(this);
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
         
         // Validación básica
+        const name = this.querySelector('input[name="name"]').value;
+        const email = this.querySelector('input[name="email"]').value;
+        const message = this.querySelector('textarea[name="message"]').value;
+        
         if (!name || !email || !message) {
-            alert('Por favor, completa todos los campos.');
+            formMessage.textContent = 'Por favor, completa todos los campos.';
+            formMessage.className = 'form-message error';
             return;
         }
         
-        // Simular envío (aquí puedes integrar con un servicio real)
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        
+        // Cambiar texto del botón
         submitButton.textContent = 'Enviando...';
         submitButton.disabled = true;
         
-        setTimeout(() => {
-            alert('¡Mensaje enviado con éxito! Te contactaré pronto.');
-            contactForm.reset();
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                formMessage.textContent = '¡Mensaje enviado con éxito! Te responderé pronto.';
+                formMessage.className = 'form-message success';
+                this.reset();
+            } else {
+                throw new Error('Error al enviar el mensaje');
+            }
+        })
+        .catch(error => {
+            formMessage.textContent = 'Error al enviar el mensaje. Por favor, intenta nuevamente.';
+            formMessage.className = 'form-message error';
+        })
+        .finally(() => {
             submitButton.textContent = originalText;
             submitButton.disabled = false;
-        }, 2000);
+        });
     });
 }
 
