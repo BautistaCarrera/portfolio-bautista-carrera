@@ -52,3 +52,4 @@ out/
 # *.psd
 # *.ai
 # *.sketch
+.vercel
