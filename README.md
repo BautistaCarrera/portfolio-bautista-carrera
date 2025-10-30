@@ -124,6 +124,16 @@ Los colores principales están definidos en variables CSS:
 - **Teléfono**: +54 2477-504122
 - **Ubicación**: Av. Pellegrini 563, Rosario, Santa Fe, Argentina
 
+## 📧 Formulario de Contacto REAL
+
+A partir de la versión actual, el formulario de contacto permite a los visitantes enviar mensajes directamente desde la web (sin abrir Outlook/Gmail), usando Formspree para gestionar los envíos y notificaciones. Recibirás los mensajes en tu email configurado en Formspree.
+
+- Nombre, Email y Mensaje son obligatorios.
+- El usuario ve confirmación de envío directamente en la página.
+- No se requiere backend ni abrir el cliente de correo.
+
+---
+
 ## 📄 Licencia
 
 Este proyecto es de uso personal. Puedes usarlo como base para tu propio portfolio.

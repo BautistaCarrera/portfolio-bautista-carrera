@@ -66,59 +66,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Formulario de contacto con Formspree
+// Formulario contacto usando EmailJS AJAX
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        const formData = new FormData(this);
+        if (formMessage) {
+            formMessage.textContent = '';
+            formMessage.className = 'form-message';
+        }
         const submitButton = this.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        
-        // Validación básica
-        const name = this.querySelector('input[name="name"]').value;
-        const email = this.querySelector('input[name="email"]').value;
-        const message = this.querySelector('textarea[name="message"]').value;
-        
+        if (submitButton) {
+            submitButton.textContent = 'Enviando...';
+            submitButton.disabled = true;
+        }
+
+        // Valida campos
+        const name = this.querySelector('input[name="name"]').value.trim();
+        const email = this.querySelector('input[name="email"]').value.trim();
+        const message = this.querySelector('textarea[name="message"]').value.trim();
         if (!name || !email || !message) {
-            formMessage.textContent = 'Por favor, completa todos los campos.';
-            formMessage.className = 'form-message error';
+            if (formMessage) {
+                formMessage.textContent = 'Por favor, completa todos los campos.';
+                formMessage.className = 'form-message error';
+            }
+            if (submitButton) {
+                submitButton.textContent = 'Enviar Mensaje';
+                submitButton.disabled = false;
+            }
             return;
         }
-        
-        // Cambiar texto del botón
-        submitButton.textContent = 'Enviando...';
-        submitButton.disabled = true;
-        
-        fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
+
+        // Reemplaza estos 3 valores por los tuyos de EmailJS
+        const serviceID = 'service_9btksa7';
+        const templateID = 'template_8a1x7kd';
+
+        emailjs.sendForm(serviceID, templateID, this)
+        .then(function() {
+            if (formMessage) {
                 formMessage.textContent = '¡Mensaje enviado con éxito! Te responderé pronto.';
                 formMessage.className = 'form-message success';
-                this.reset();
-            } else {
-                throw new Error('Error al enviar el mensaje');
+            }
+            contactForm.reset();
+        }, function(error) {
+            if (formMessage) {
+                formMessage.textContent = 'Error al enviar el mensaje. Intenta nuevamente o comunícate por email.';
+                formMessage.className = 'form-message error';
             }
         })
-        .catch(error => {
-            formMessage.textContent = 'Error al enviar el mensaje. Por favor, intenta nuevamente.';
-            formMessage.className = 'form-message error';
-        })
         .finally(() => {
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
+            if (submitButton) {
+                submitButton.textContent = 'Enviar Mensaje';
+                submitButton.disabled = false;
+            }
         });
     });
 }
+
+// Muestra mensaje de éxito si vuelve de FormSubmit con ?sent=1
+(function showSuccessIfReturned() {
+    const params = new URLSearchParams(location.search);
+    if (params.get('sent') === '1' && formMessage) {
+        formMessage.textContent = '¡Mensaje enviado con éxito! Te responderé pronto.';
+        formMessage.className = 'form-message success';
+    }
+})();
 
 // Efecto de typing en el título principal
 function typeWriter(element, text, speed = 100) {
@@ -163,13 +177,20 @@ function animateCounter(element, target, duration = 2000) {
     updateCounter();
 }
 
-// Efecto parallax suave para el hero
+// Efecto parallax suave para el hero optimizado con rAF
+let ticking = false;
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const rate = scrolled * -0.5;
-        hero.style.transform = `translateY(${rate}px)`;
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const rate = scrolled * -0.5;
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+            ticking = false;
+        });
+        ticking = true;
     }
 });
 

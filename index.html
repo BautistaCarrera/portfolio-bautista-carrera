@@ -6,8 +6,13 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <!-- Updated: Ecommerce project added - v2 -->
-    <title>Bautista Carrera - Portfolio v2</title>
+    <meta name="description" content="Portfolio profesional de Bautista Carrera: desarrollo web, QA, proyectos y contacto.">
+    <meta property="og:title" content="Bautista Carrera - Portfolio">
+    <meta property="og:description" content="Desarrollo web y QA. Conoce mis proyectos y contáctame.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://raw.githubusercontent.com/bautistacarrera/portfolio-bautista-carrera/main/bc-perfil.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Bautista Carrera - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -43,7 +48,6 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">Bautista Carrera</h1>
-                    <!-- Updated with Ecommerce project -->
                     <h2 class="hero-subtitle">Estudiante de Analista Programador | Tester QA</h2>
                     <p class="hero-description">
                         Apasionado por el desarrollo de software y la calidad de productos digitales. 
@@ -200,7 +204,7 @@
                             <span class="tech-tag">HTML5</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://juego-tateti-six.vercel.app/" class="project-link" target="_blank">
+                            <a href="https://juego-tateti-six.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i>
                                 Ver Demo
                             </a>
@@ -221,28 +225,7 @@
                             <span class="tech-tag">JavaScript</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://consultorios.vercel.app/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>
-                                Ver Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>Ecommerce Simple</h3>
-                        <p class="project-description">
-                            Aplicación de comercio electrónico desarrollada con React.js. Características principales: catálogo de productos con filtros y búsqueda, carrito de compras funcional, sistema de autenticación de usuarios, panel de administración para gestión de productos, diseño responsive y moderno, integración con base de datos para persistencia de datos y experiencia de usuario optimizada.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">HTML5</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://ecommerce-simple-3snp6d6k6-bautistas-projects-206cb528.vercel.app" class="project-link" target="_blank">
+                            <a href="https://consultorios.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-external-link-alt"></i>
                                 Ver Demo
                             </a>
@@ -328,14 +311,21 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form action="mailto:carrerabauti@gmail.com" method="GET">
+                    <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" name="subject" placeholder="Asunto" required>
+                            <label for="cf-name" class="visually-hidden">Nombre</label>
+                            <input id="cf-name" type="text" name="name" placeholder="Nombre" autocomplete="name" aria-label="Nombre" required>
                         </div>
                         <div class="form-group">
-                            <textarea name="body" placeholder="Mensaje" rows="5" required></textarea>
+                            <label for="cf-email" class="visually-hidden">Email</label>
+                            <input id="cf-email" type="email" name="email" placeholder="Email" autocomplete="email" aria-label="Email" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Enviar Email</button>
+                        <div class="form-group">
+                            <label for="cf-message" class="visually-hidden">Mensaje</label>
+                            <textarea id="cf-message" name="message" placeholder="Mensaje" rows="5" autocomplete="off" aria-label="Mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        <div id="formMessage" class="form-message"></div>
                     </form>
                 </div>
             </div>
@@ -349,6 +339,22 @@
         </div>
     </footer>
 
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/5492477504122" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="Enviar mensaje por WhatsApp">
+      <svg viewBox="0 0 448 448" width="38" height="38" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <circle cx="224" cy="224" r="224" fill="#25d366"/>
+          <path d="M224.1 117.1c-58.4 0-106 47.6-106 106 0 18.7 5 37 14.7 53l-15.6 57.2 58.6-15.4c15.5 8.5 33.1 13 51.4 13 58.4 0 106-47.6 106-106s-47.6-106-106-106zm0 191c-16.1 0-31.9-4.1-45.7-12.1l-3.3-2-34.8 9.2 9.5-33.9-2.1-3.3c-9.5-15.2-14.5-32.8-14.5-51 0-52.1 42.4-94.5 94.5-94.5s94.5 42.4 94.5 94.5c0 52.1-42.4 94.5-94.5 94.5zm55.8-74.5c-3-1.5-17.7-8.7-20.5-9.7-2.8-1-4.8-1.5-6.8 1.5-2 3-7.8 9.7-9.6 11.7-1.8 2-3.5 2.2-6.5.7-3-1.5-12.5-4.6-23.8-14.7-8.8-8.1-14.7-18-16.4-21-1.7-3 0-4.6 1.3-6 1.4-1.4 2.9-3.6 4.4-5.4 1.5-1.8 2-3 3-5 .9-2 .5-3.7 0-5.2-.5-1.5-6.8-16.5-9.3-22.7-2.5-6.2-5-5.4-6.8-5.5l-5.7-.1c-1.9 0-5 0.7-7.6 3.7-2.6 3-10 9.8-10 23.8s10.2 27.6 11.6 29.6c1.4 2 20.2 32.7 49.1 44.6 17.8 7.4 24.8 8.1 33.8 6.8 5.5-.8 17-7 19.3-13.7 2.4-6.8 2.4-12.6 1.7-13.8-.6-1.1-2.6-1.7-5.6-3.2z" fill="#fff"/>
+        </g>
+      </svg>
+    </a>
+
     <script src="script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init('obfI3_M7KaLXQal8M'); // REEMPLAZA POR TU USER ID (PUBLIC KEY)
+        })();
+    </script>
 </body>
 </html>
